@@ -1,14 +1,23 @@
-﻿<div ng-app class="jumbotron">
-    
+﻿<link href="~/Content/todo.css" rel="stylesheet" />
+<div ng-app="app" class="jumbotron">
+
     <div ng-controller="TodoCtrl" class="row">
-        @*<h2>Total Todos: {{totalTodos}}</h2>*@
-        <div class="row">
-            <input ng-model="name" />
-            <h2>Hello {{name}} !</h2>
-        </div>
+        <h2>Total Todos: {{getTotalTodos()}}</h2>
+        <ul class="list-unstyled">
+            <li ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.done" />
+                <span class="done-{{todo.done}}">{{todo.text}}</span>
+            </li>
+        </ul>
+        <form class="form-horizontal">
+            <input type="text" ng-model="formTodoText"/>
+            <button class="btn-info" ng-click="addTodo()">Add</button>
+        </form>
+        <button class="btn-danger" ng-click="clearCompleted()">Clear Completed</button>    
     </div>
     
 </div>
 
+<script src="~/Scripts/underscore.js"></script>
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/app/todo.js"></script>
